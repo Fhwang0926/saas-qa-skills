@@ -2,7 +2,9 @@
 
 한국어 | [English](README.en.md) | [日本語](README.ja.md) | [Tiếng Việt](README.vi.md) | [Español](README.es.md) | [Português](README.pt.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Italiano](README.it.md)
 
-웹사이트와 SaaS 서비스의 브라우저 동작, 화면·반응형 UI, 접근성을 하나의 스킬로 점검합니다. Anthropic, Vercel, Microsoft의 공개 스킬에서 관련 워크플로를 선별해 이 저장소의 단일 스킬로 재구성했습니다. 원본 스킬과 외부 도구를 별도로 설치하지 않아도 스킬 지침과 점검 항목을 읽을 수 있습니다.
+웹사이트와 SaaS 서비스의 브라우저 동작, 화면·반응형 UI, 접근성을 `saas-web-qa` 스킬로 점검합니다. Anthropic, Vercel, Microsoft의 공개 스킬에서 관련 워크플로를 선별해 QA 지침으로 재구성했습니다. 원본 스킬과 외부 도구를 별도로 설치하지 않아도 스킬 지침과 점검 항목을 읽을 수 있습니다.
+
+검색엔진 사이트 등록은 별도 [search-engine-registration](skills/search-engine-registration/SKILL.md) 스킬로 지원합니다. 구글 URL 접두어 등록, 네이버 소유확인, 구글 서치콘솔에서 빙으로 가져오기, 다음 robots.txt 인증을 다룹니다.
 
 요청 범위에 따라 위험도 기반 QA 계획, API 동작 확인, 기존 Playwright·Cypress 테스트 검토와 실패 원인 분석도 지원합니다. [Kimi의 소프트웨어 테스트 스킬 목록](https://www.kimi.ai/ko/resources/software-testing-skills)에서 소개한 관련 프로젝트를 함께 참고했습니다.
 
@@ -72,6 +74,24 @@ npx skills add /path/to/saas-qa-skills --skill saas-web-qa
 기본 설치 범위는 명령을 실행한 프로젝트입니다. 다른 프로젝트에서도 공통으로 사용하려면 `-g` 옵션을 추가합니다. 설치 후 에이전트를 다시 시작해야 스킬이 표시될 수 있습니다.
 
 ## 사용 예시
+
+### 검색엔진 등록 스킬
+
+QA 스킬과 별도로 필요한 프로젝트에 설치합니다. 아래의 QA 설치·실행 지침과 구분하여 `search-engine-registration`의 지침을 읽고 사용합니다.
+
+```bash
+npx skills add Fhwang0926/saas-qa-skills --skill search-engine-registration
+```
+
+```text
+$search-engine-registration https://example.com 사이트를
+구글 URL 접두어, 네이버, 빙 Search Console 가져오기, 다음 웹마스터에 등록해줘.
+기존 인증 설정을 확인하고 필요한 코드 변경과 서비스별 남은 단계를 알려줘.
+```
+
+로그인·PIN 입력·이용 동의에 사용자 참여가 필요할 수 있습니다. 실제 등록에는 공개 사이트 반영과 서비스별 인증 성공 확인이 필요하며, 이 저장소에 스킬을 추가하는 것만으로 사이트가 등록되지는 않습니다.
+
+### 웹 QA 스킬
 
 ```text
 $saas-web-qa 로그인 화면을 PC와 모바일에서 점검하고 재현 가능한 문제를 알려줘.
